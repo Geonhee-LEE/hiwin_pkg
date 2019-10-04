@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<robot name="hiwin_cell" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="workcell_width" value="5.0"/>
+  <xacro:property name="workcell_length" value="8.0"/>
+  <xacro:property name="workcell_height" value="3.0"/>
+  <xacro:property name="workcell_thickness" value="0.1"/>
+  <xacro:property name="workcell_z" value="-0.1"/>
+
+  <xacro:property name="arm_prefix" value=""/>
+
+  <xacro:include filename="$(find hiwin_ra605_support)/urdf/hiwin_ra605_macro.xacro"/>
+  <xacro:include filename="$(find hiwin_cell_support)/urdf/tool_pointer_macro.xacro"/>  
+  <!-- <xacro:include filename="$(find comau_cell_support)/urdf/table.xacro"/> -->
+  <xacro:include filename="$(find hiwin_cell_support)/urdf/table_model.xacro"/>
+  <xacro:include filename="$(find hiwin_cell_support)/urdf/ground_plate.xacro"/>
+  <xacro:include filename="$(find hiwin_cell_support)/urdf/paper_frame.xacro"/>
+
+
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="yellow">
+    <color rgba="255 255 0 1"/>
+  </material>
+
+  <material name="LightGrey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+
+  <material name="workcell_material">
+   <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+
+  <xacro:hiwin_ra605 prefix=""/>
+
+
+  <xacro:pointer_definition prefix="" gripper_adjustment="0.01"/>
+  <joint name="${arm_prefix}to_pointer" type="fixed">
+    <parent link="${arm_prefix}tool0"/>
+    <child link="${arm_prefix}pointer_link"/>
+    <!-- <origin xyz="0.0 0 0" rpy="-1.57 0 -1.57"/>  -->
+    <origin xyz="0.0 0 0" rpy="0 0 0"/> 
+  </joint> 
+  
+  <link name="world"/>
+
+  
+
+  <xacro:plate name="ground_plate"
+    parent="world"
+    length="0.8"
+    width="0.8"
+    height="0.39"
+    plate_thickness="0.1"
+    color="LightGrey">
+    <!-- <origin xyz="-0.4 0.4 0.39" rpy="0 0 0" /> -->
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:plate>
+
+
+  <!-- <joint name="world_to_plate" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>    
+  </joint> -->
+
+<!-- 
+  <joint name="world_to_arm" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>    
+  </joint> -->
+
+  <joint name="plate_to_arm" type="fixed">
+    <parent link="ground_plate_plate_link"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>    
+  </joint>
+
+
+
+  <xacro:table_definition 
+    prefix="" 
+    parent="ground_plate_plate_link">
+
+    <origin xyz="0 0 0" rpy="0 0 0"/>        
+  </xacro:table_definition>
+
+  
+
+  
+
+<!-- 
+  <xacro:model_table name="table"
+    parent="ground_plate_plate_link"
+    length="0.4"
+    width="0.5"
+    height="0.39"
+    plate_thickness="0.05">    
+    <origin xyz="0.2 0.25 0.355" rpy="0 0 0" />
+  </xacro:model_table> -->
+
+  <xacro:paper name="1"
+    parent="table_to_paper_link"
+    length="0.24"
+    width="0.195"
+    height="0.0"
+    plate_thickness="0.00"
+    color="white">
+    <!-- <origin xyz="0.08 -0.04 0.001" rpy="0 0 -1.570796327" /> -->
+    <origin xyz="0.08 -0.034 0.001" rpy="0 0 -1.570796327" />
+  </xacro:paper>
+
+  <xacro:paper name="2"
+    parent="table_to_paper_link"
+    length="0.24"
+    width="0.195"
+    height="0.0"
+    plate_thickness="0.00"
+    color="white">
+    <origin xyz="0.08 -0.27 0.001" rpy="0 0 -1.570796327" />
+  </xacro:paper>
+
+
+  <link name="workcell_floor">
+    <visual><!-- bottom -->
+      <material name="workcell_material"/>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="${workcell_length} ${workcell_width} ${workcell_thickness}"/>
+      </geometry>
+    </visual>
+    <collision><!-- bottom -->
+      <material name="workcell_material"/>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="${workcell_length} ${workcell_width} ${workcell_thickness}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint definitions -->
+  <joint name="world_to_floor" type="fixed">
+    <parent link="world"/>
+    <child link="workcell_floor"/>
+    <origin xyz="0 0 -${workcell_thickness + 0.1}"/>
+  </joint>
+
+
+
+
+</robot>

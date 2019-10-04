@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: hiwin_ra605_support
+    relative_path: urdf/hiwin_ra605.urdf
+  SRDF:
+    relative_path: config/hiwin_ra605.srdf
+  CONFIG:
+    author_name: Doug Smith
+    author_email: dougkeba@gmail.com
+    generated_timestamp: 1509489554

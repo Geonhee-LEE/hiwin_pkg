@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:include filename="$(find hiwin_resources)/urdf/common_materials.xacro"/>
+
+<xacro:property name="base_dispX" value="0.0" />
+<xacro:property name="base_dispZ" value="0.0" />
+<xacro:property name="joint1_dispX" value="0.0" />
+<xacro:property name="joint1_dispZ" value="0.0" />
+<xacro:property name="joint2_dispX" value="0.030" />
+<xacro:property name="joint2_dispZ" value="0.373" />
+<xacro:property name="joint3_dispX" value="0.0" />
+<xacro:property name="joint3_dispZ" value="0.340" />
+<xacro:property name="joint4_dispX" value="0.094" />
+<xacro:property name="joint4_dispZ" value="0.040" />
+<xacro:property name="joint5_dispX" value="0.244" />
+<xacro:property name="joint5_dispZ" value="0.0" />
+<xacro:property name="joint6_dispX" value="0.0865" />
+<xacro:property name="joint6_dispZ" value="0.0" />
+
+
+
+<xacro:property name="model2_origin" value="${joint2_dispX * -1} 0 ${joint2_dispZ * -1}" />
+<xacro:property name="model3_origin" value="${(joint2_dispX + joint3_dispX) * -1} 0 ${(joint2_dispZ + joint3_dispZ) * -1}" />
+<xacro:property name="model4_origin" value="${(joint2_dispX + joint3_dispX + joint4_dispX) * -1} 0 ${(joint2_dispZ + joint3_dispZ + joint4_dispZ) * -1}" />
+<xacro:property name="model5_origin" value="${(joint2_dispX + joint3_dispX + joint4_dispX + joint5_dispX) * -1} 0 ${(joint2_dispZ + joint3_dispZ + joint4_dispZ + joint5_dispZ) * -1}" />
+<xacro:property name="model6_origin" value="${(joint2_dispX + joint3_dispX + joint4_dispX + joint5_dispX + joint6_dispX) * -1} 0 ${(joint2_dispZ + joint3_dispZ + joint4_dispZ + joint5_dispZ + joint6_dispZ) * -1}" />
+
+<xacro:macro name="hiwin_ra605" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/base_link.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/base_link.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_1">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_1.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_1.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_2">
+        <visual>
+            <origin xyz="${model2_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_2.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <origin xyz="${model2_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_2.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_3">
+        <visual>
+            <origin xyz="${model3_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_3.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <origin xyz="${model3_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_3.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_4">
+        <visual>
+            <origin xyz="${model4_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_4.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <origin xyz="${model4_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_4.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_5">
+        <visual>
+            <origin xyz="${model5_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_5.dae"/>
+            </geometry>
+            <xacro:material_abb_orange />
+        </visual>
+        <collision>
+            <origin xyz="${model5_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_5.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}link_6">
+        <visual>
+            <origin xyz="${model6_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_6.dae"/>
+            </geometry>
+            <xacro:material_abb_black />
+        </visual>
+        <collision>
+            <origin xyz="${model6_origin}" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://hiwin_ra605_support/meshes/hiwin_ra605/visual/link_6.dae"/>
+            </geometry>
+            <xacro:material_abb_yellow />
+        </collision>
+    </link>
+    <link name="${prefix}tool0"/>
+    <!-- end of link list -->
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}base_link"/>
+        <child link="${prefix}link_1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-2.86" upper="2.86" effort="0" velocity="4.36"/>
+    </joint>
+    <joint name="${prefix}joint_2" type="revolute">
+        <origin xyz="${joint2_dispX} 0 ${joint2_dispZ}" rpy="0 0 0"/>
+        <parent link="${prefix}link_1"/>
+        <child link="${prefix}link_2"/>
+        <axis xyz="0 -1 0"/>
+        <limit lower="-2.18" upper="1.48" effort="0" velocity="3.49"/>
+    </joint>
+    <joint name="${prefix}joint_3" type="revolute">
+        <origin xyz="${joint3_dispX} 0 ${joint3_dispZ}" rpy="0 0 0"/>
+        <parent link="${prefix}link_2"/>
+        <child link="${prefix}link_3"/>
+        <axis xyz="0 -1 0"/>
+        <limit lower="-0.95" upper="3.22" effort="0" velocity="4.36"/>
+    </joint>
+    <joint name="${prefix}joint_4" type="revolute">
+        <origin xyz="${joint4_dispX} 0 ${joint4_dispZ}" rpy="0 0 0"/>
+        <parent link="${prefix}link_3"/>
+        <child link="${prefix}link_4"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-3.3" upper="3.3" effort="0" velocity="4.36"/>
+    </joint>
+    <joint name="${prefix}joint_5" type="revolute">
+        <origin xyz="${joint5_dispX} 0 ${joint5_dispZ}" rpy="0 0 0"/>
+        <parent link="${prefix}link_4"/>
+        <child link="${prefix}link_5"/>
+        <axis xyz="0 -1 0"/>
+        <limit lower="-2.0" upper="2.0" effort="0" velocity="4.36"/>
+    </joint>
+    <joint name="${prefix}joint_6" type="revolute">
+        <origin xyz="${joint6_dispX} 0 ${joint6_dispZ}" rpy="0 0 0"/>
+        <parent link="${prefix}link_5"/>
+        <child link="${prefix}link_6"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-6.2831" upper="6.2831" effort="0" velocity="6.98"/>
+    </joint>
+    <joint name="${prefix}joint_6-tool0" type="fixed">
+        <parent link="${prefix}link_6"/>
+        <child link="${prefix}tool0"/>
+        <origin xyz="0 0 0" rpy="-1.5707 -1.57079632679 -1.5707"/>
+    </joint>
+    <!-- end of joint list -->
+
+    <!-- ROS base_link to ABB World Coordinates transform -->
+    <link name="${prefix}base" />
+    <joint name="${prefix}base_link-base" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}base_link"/>
+        <child link="${prefix}base"/>
+    </joint>
+</xacro:macro>
+</robot>

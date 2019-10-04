@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  
+
+<xacro:macro name="paper" params="parent name *origin length width height plate_thickness color">
+    <joint name="${parent}_${name}_base_joint" type="fixed">
+        <xacro:insert_block name="origin"/>
+        <parent link="${parent}"/>
+        <child link="table_paper_frame${name}"/>
+    </joint>
+    <link name="table_paper_frame${name}">
+        <visual>
+            <origin xyz="${1/2 * width} ${1/2 * length} ${-1 * plate_thickness}"/>
+            <geometry>
+                <box size="${width} ${length} ${plate_thickness}"/>
+              </geometry>
+            <material name="${color}"/>
+        </visual>
+        <collision>
+            <origin xyz="${1/2 * width} ${1/2 * length} ${-1 * plate_thickness}"/>
+            <geometry>
+                <box size="${width} ${length} ${plate_thickness * 0.01}"/>
+            </geometry>
+        </collision>
+    </link>
+    
+</xacro:macro>
+</robot>
+

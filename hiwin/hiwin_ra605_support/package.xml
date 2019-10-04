@@ -1,0 +1,38 @@
+<package>
+  <name>hiwin_ra605_support</name>
+  <version>0.0.1</version>
+  <description>
+    <p>
+      ROS Industrial support for the hiwin_ra605 (and variants).
+    </p>
+    <p>
+      This package contains configuration data, 3D models and launch files
+      for hiwin_ra605 manipulators.
+    </p>
+    <p>
+      <b>Specifications</b>
+    </p>
+      <ul>
+        <li>hiwin_ra605 - Default</li>
+      </ul>
+    <p>
+      Before using any of the configuration files and / or meshes included
+      in this package, be sure to check they are correct for the particular
+      robot model and configuration you intend to use them with.
+    </p>
+  </description>
+  <author>dougkeba@gmail.com</author>
+  <maintainer email="dougkeba@gmail.com"/>
+  <license>Apache2.0</license>
+  <url type="website">http://ros.org/wiki/hiwin_ra605_support</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>driver</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>joint_state_publisher</run_depend>
+  <run_depend>xacro</run_depend>
+  <export>
+    <architecture_independent/>
+  </export>
+</package>

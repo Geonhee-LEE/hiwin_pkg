@@ -1,0 +1,25 @@
+<!--
+  Manipulator specific version of the state visualizer.
+
+  Defaults provided for hiwin_ra605:
+   -  6 joints
+
+  Usage:
+    robot_state_visualize_hiwin_ra605.launch robot_ip:=<value>
+-->
+<launch>
+  <arg name="robot_ip" />
+
+  <rosparam command="load" file="$(find hiwin_ra605_support)/config/joint_names_hiwin_ra605.yaml" />
+
+  <include file="$(find driver)/launch/robot_state.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" 
+    type="robot_state_publisher" />
+
+  <include file="$(find hiwin_ra605_support)/launch/load_hiwin_ra605.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find industrial_robot_client)/config/robot_state_visualize.rviz" required="true" />
+</launch>

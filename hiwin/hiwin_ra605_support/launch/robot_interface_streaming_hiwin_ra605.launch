@@ -1,0 +1,18 @@
+<!--
+  Manipulator specific version of 'robot_interface_streaming.launch'.
+
+  Defaults provided for hiwin_ra605:
+   - 6 joints
+
+  Usage:
+    robot_interface_streaming_hiwin_ra605.launch robot_ip:=<value>
+-->
+<launch>
+  <arg name="robot_ip" />
+
+  <rosparam command="load" file="$(find hiwin_ra605_support)/config/joint_names_hiwin_ra605.yaml" />
+
+  <include file="$(find hiwin_ra605_support)/launch/robot_interface_streaming.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+  </include>
+</launch>

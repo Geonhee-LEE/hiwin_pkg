@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<robot name="hiwin_ra605" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find hiwin_ra605_support)/urdf/hiwin_ra605_macro.xacro"/>
+  <xacro:hiwin_ra605 prefix=""/>
+</robot>

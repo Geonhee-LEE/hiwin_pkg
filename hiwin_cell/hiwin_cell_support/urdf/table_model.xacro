@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- parameter list -->
+  
+
+    <xacro:macro name="table_definition" params="prefix *origin parent">
+        <link name="${prefix}table_link">
+            <visual>            
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hiwin_cell_support/meshes/table.dae" />
+                </geometry>
+                <material name="silver">
+                    <color rgba="0.8 0.8 0.8 1"/>
+                </material>
+            </visual>
+            <collision>                
+                <geometry>
+                    <mesh filename="package://hiwin_cell_support/meshes/table.stl" />
+                    <cylinder radius=".015" length="0.02" />
+                </geometry>
+                <material name="another_blue2">
+                    <color rgba="0.38 0.54 0.83 1"/>
+                </material>
+            </collision>            
+        </link>
+
+        <joint name="${parent}to_${prefix}table" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}table_link"/>
+            <!-- <origin xyz="0 0 -0.003" rpy="0 0 0"/>                 -->
+            <origin xyz="0 0 0" rpy="0 0 0"/>                
+        </joint>
+
+        <link name="table_to_paper_link" />
+    
+  
+        <joint name="${prefix}table_to_paper" type="fixed">
+            <parent link="${prefix}table_link"/>
+            <child link="${prefix}table_to_paper_link"/>
+            <!-- <origin xyz="0.2 0.25 0.355" rpy="0 0 0" /> -->
+            <!-- <origin xyz="0.2 0.216 0.312" rpy="0 0 0" /> -->
+            <origin xyz="0.2 0.216 0.309" rpy="0 0 0" />
+        </joint>
+
+
+
+    </xacro:macro>  
+</robot>

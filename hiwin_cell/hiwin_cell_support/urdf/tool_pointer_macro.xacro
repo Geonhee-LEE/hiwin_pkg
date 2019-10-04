@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	<!-- parameter list -->
+	<xacro:property name="gripper_length" value="0.044"/>
+	<xacro:property name="gripper_width" value="0.088"/>
+	<xacro:property name="gripper_height" value="0.0946"/>
+	<xacro:property name="gripper_body_height" value="0.16"/>
+
+	<xacro:macro name="pointer_definition" params="prefix gripper_adjustment">
+		<link name="${prefix}pointer_link">
+			<visual>			
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hiwin_cell_support/meshes/tool_pointer.stl" />
+				</geometry>
+				<material name="silver">
+					<color rgba="0.8 0.8 0.8 1"/>
+				</material>
+			</visual>
+			<collision>
+				<!-- <origin xyz="0 0 0.0125"/> -->
+				<geometry>
+					<mesh filename="package://hiwin_cell_support/meshes/tool_pointer.stl" />
+					<!-- <cylinder radius=".015" length="0.024" /> -->
+				</geometry>
+				<material name="another_blue2">
+					<color rgba="0.38 0.54 0.83 1"/>
+				</material>
+			</collision>
+		</link>
+
+
+		<link name="${prefix}tcp_frame"/>
+		<joint name="${prefix}pointer_to_tcp" type="fixed">
+			<parent link="${prefix}pointer_link"/>
+			<child link="${prefix}tcp_frame"/>
+			<origin xyz=" 0 0 0.090" rpy="0 0 0"/>
+		</joint>	
+
+	</xacro:macro>	
+</robot>

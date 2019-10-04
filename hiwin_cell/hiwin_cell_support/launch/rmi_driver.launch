@@ -1,0 +1,11 @@
+<launch>
+  <rosparam command="load" file="$(find hiwin_cell_support)/config/rmi_driver_config.yaml"/>
+
+  <!-- <node name="rmi_driver" pkg="rmi_driver" type="rmi_driver_node" output="screen" /> -->  
+
+
+  
+
+  <!-- <node name="$(anon static_transform_publisher)" pkg="tf" type="static_transform_publisher" args="0.005 0.02 0.002 0 0 0 /table_paper_frame1 /camera_frame 10"/>  -->
+  
+</launch>
